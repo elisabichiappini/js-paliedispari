@@ -29,14 +29,13 @@ OPERATIONS
 */
 
 // 1
-const pariDispari = prompt('Scegli pari o dispari').toLowerCase();
-if (pariDispari !== 'pari' && pariDispari !== 'dispari') {
-    alert('Devi scrivere pari o dispari');
-    pariDispari = prompt('Scegli pari o dispari').toLowerCase();
-    } else {
-    console.log('Hai scelto di giocare', pariDispari);
-}
-
+let pariDispari = prompt('Scegli pari o dispari').toLowerCase();
+    if (pariDispari !== 'pari' && pariDispari !== 'dispari') {
+        alert('Devi scrivere pari o dispari');
+        pariDispari = prompt('Scegli pari o dispari').toLowerCase();
+    } 
+console.log('Hai scelto di giocare', pariDispari);
+    
 // 2
 const inputNumeroUtente = Number(prompt('Inserisci un numero da 0 a 5'));
 console.log('Il numero che hai scelto è: ', inputNumeroUtente);
@@ -46,12 +45,14 @@ const inputNumeroComputer = inputComputer(0, 5);
 console.log('Il numero del computer è: ', inputNumeroComputer);
 
 // 4b
-const sommaNumeriPresa = sommaNumeri();
-console.log(sommaNumeri(inputNumeroComputer, inputNumeroUtente))
+const sommaNumeriPresa = sommaNumeri(inputNumeroComputer, inputNumeroUtente);
+console.log(sommaNumeriPresa);
 
 // 5
-if ((sommaNumeriPresa % 2 === 0 && pariDispari === 'pari') || (sommaNumeriPresa % 2 !== 0 && pariDispari === 'dispari')) {
-    console.log('hai vinto');
+if ( pariDispari === 'pari' && sommaNumeriPresa % 2 === 0 ) {
+    console.log(`${sommaNumeriPresa} è numero pari, quindi hai vinto`)
+} else if (pariDispari === 'dispari' && sommaNumeriPresa % 2 !== 0 ) {
+    console.log(`${sommaNumeriPresa} è numero dispari, quindi hai vinto`)
 } else {
-    console.log('non hai vinto');
+    console.log('ha vinto il computer');
 }
