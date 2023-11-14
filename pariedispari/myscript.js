@@ -12,11 +12,13 @@
 FUNCTIONS
 */
 
+// 3
 function inputComputer (min, max) {
     const numeroRandom = Math.floor(Math.random() * (max - min + 1)) + min;
     return numeroRandom;
 }
 
+// 4
 function sommaNumeri (input1, input2) {
     const sommaNumeri = input1 + input2;
     return sommaNumeri;
@@ -25,6 +27,7 @@ function sommaNumeri (input1, input2) {
 OPERATIONS
 */
 
+// 1
 const pariDispari = prompt('Scegli pari o dispari').toLowerCase();
 if (pariDispari !== 'pari' && pariDispari !== 'dispari') {
     alert('Devi scrivere pari o dispari');
@@ -33,14 +36,17 @@ if (pariDispari !== 'pari' && pariDispari !== 'dispari') {
     console.log('Hai scelto di giocare', pariDispari);
 }
 
+// 2
 const inputNumeroUtente = Number(prompt('Inserisci un numero da 0 a 5'));
 console.log('Il numero che hai scelto è: ', inputNumeroUtente);
+// 3
 const inputNumeroComputer = inputComputer(0, 5);
 console.log('Il numero del computer è: ', inputNumeroComputer);
-
+// 4
 const sommaNumeriPresa = sommaNumeri();
 console.log(sommaNumeri(inputNumeroComputer, inputNumeroUtente))
 
+// 5
 if ((sommaNumeriPresa % 2 === 0 && pariDispari === 'pari') || (sommaNumeriPresa % 2 !== 0 && pariDispari === 'dispari')) {
     console.log('hai vinto');
 } else {
