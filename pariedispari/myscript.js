@@ -2,57 +2,79 @@
 'use strict';
 
 // Pari e Dispari
-// 1 - Prompt a utente pari o dispari
-// 2 - Prompt a utente inserisce un numero da 1 a 5
-// 3 - Funzione genera numero random da 1 a 5 per computer.
-// 4 - Funzione somma numeri.
-// 5 - Condizione: è una somma pari o dispari? SE la somma = pari && la scelta = pari |OR| la somma è dispari e la scelta è dispari allora vince utente*; ALTRIMENTI vince Computer
+// Prompt a utente pari o dispari
+// Prompt a utente inserisci un numero da 1 a 5
+// Funzione genera numero random da 1 a 5 per computer.
+// Funzione somma numeri.
+// Condizione: è una somma pari o dispari? 
+// SE la somma === pari && la scelta = pari |OR| la somma === dispari && la scelta === dispari, allora vince utente; 
+//ALTRIMENTI vince Computer
 
 /*
 FUNCTIONS
 */
+//funzione scelta pari o dispari per utente
+function sceltaUtentetext(text) {
+    let opzioni = ['pari', 'dispari'];
+    // const scelta = prompt(text).toLowerCase();
+    let scelta = '';
 
-// 3a
-function inputComputer (min, max) {
-    const numeroRandom = Math.floor(Math.random() * (max - min + 1)) + min;
-    return numeroRandom;
+    do {
+        scelta = prompt(text).toLowerCase();
+    } while (!opzioni.includes(scelta));
+ 
+return scelta;
 }
 
-// 4a
-function sommaNumeri (input1, input2) {
-    const sommaNumeri = input1 + input2;
-    return sommaNumeri;
+//funzione per scelta numero per utente
+function sceltaUtenteNumber(text, min, max) {
+    let scelta = '';
+    do {
+        scelta = parseInt(prompt(text));
+    } while (scelta < min || scelta > max);
+    return scelta;
+}
+
+//funzione numero random per computer
+function numeroRandom (min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+//funzione determinare se il numero è pari
+function numeroPari(num) {
+    return num % 2 === 0;
+}
+
+//funzione per dichiarare il vincitore
+function utenteVincitore (utenteScelta, numeroPari) {
+    if(utenteScelta === 'pari' && numeroPari) {
+        return true;
+    }
+    if(utenteScelta === 'dispari' && !numeroPari) {
+        return true;
+    }
+return false;
 }
 
 /*
 OPERATIONS
 */
 
-// 1
-let pariDispari = prompt('Scegli pari o dispari').toLowerCase();
-    if (pariDispari !== 'pari' && pariDispari !== 'dispari') {
-        alert('Devi scrivere pari o dispari');
-        pariDispari = prompt('Scegli pari o dispari').toLowerCase();
-    } 
-console.log('Hai scelto di giocare', pariDispari);
-    
-// 2
-const inputNumeroUtente = Number(prompt('Inserisci un numero da 0 a 5'));
-console.log('Il numero che hai scelto è: ', inputNumeroUtente);
+const utenteScelta = sceltaUtentetext('Inserisci pari o dispari');
+const utenteNumero = sceltaUtenteNumber('Inserisci un numero', 0, 5);
+const computerNumber = numeroRandom (0, 5);
+const sommaNumeri = utenteNumero + computerNumber;
+const sommaPariOppureDispari = numeroPari(sommaNumeri);
+const vincitore = utenteVincitore(utenteScelta, sommaPariOppureDispari);
 
-// 3b
-const inputNumeroComputer = inputComputer(0, 5);
-console.log('Il numero del computer è: ', inputNumeroComputer);
+console.log('Hai scelto', utenteScelta);
+console.log('Hai giocato il numero', utenteNumero);
+console.log('Il computer gioca', computerNumber);
+console.log('La somma è', sommaNumeri);
+console.log(vincitore);
 
-// 4b
-const sommaNumeriPresa = sommaNumeri(inputNumeroComputer, inputNumeroUtente);
-console.log(sommaNumeriPresa);
-
-// 5
-if ( pariDispari === 'pari' && sommaNumeriPresa % 2 === 0 ) {
-    console.log(`${sommaNumeriPresa} è numero pari, quindi hai vinto`)
-} else if (pariDispari === 'dispari' && sommaNumeriPresa % 2 !== 0 ) {
-    console.log(`${sommaNumeriPresa} è numero dispari, quindi hai vinto`)
+if(vincitore) {
+    console.log('Hai vinto!') ;
 } else {
-    console.log('ha vinto il computer');
+    console.log('Mi spiace, ha vinto il computer');
 }
