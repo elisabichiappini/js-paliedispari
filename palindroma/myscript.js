@@ -1,32 +1,50 @@
 //restizione linguaggio Js
 'use strict';
-
 // Palidroma
-// 1 - Prompt a utente inserisci una parola;
-// 2 - Funzione acquisire valore parola; 
-// 3 - Condizione: la parola è palindroma? SE palindroma true ALTRIMENTI false
+// Prompt a utente inserisci una parola;
+// Funzione acquisire valore parola definendo alcuni parametri che la rendono vera o falsa; 
+// dopo di chè creare un ciclo per invertire la parola e confrontare i due risultati a indici opposti.
+// Condizione: la parola è palindroma? SE palindroma true ALTRIMENTI false
 
 /*
 FUNCTIONS
 */
-// 2 - Funzione acquisire valore parola; 
-function palindrogram (parola) {
-    const palindromaValidation = parola.toLowerCase();
-    if (palindromaValidation === palindromaValidation.split('').reverse().join('')) {
+// funzinoe controllo parola
+function checkPalindromaFnz (parola) {
+    if(parola.length === '') {
+        return false;
+    // questo if può essere scritto anche su una riga if(parola.length === 0) return false;
+    }
+
+    if(parola.length === 1){
         return true;
     }
-    return false;
-}
 
+    //qui abbiamo la parola iniziale resa tutta minuscola da confrontare con la parola invertita
+    const parolaInputMinuscolizzata = parola.toLowerCase();
+
+    let parolaTrasformataInvertita = '';
+    //la parola invertita da confrontare con quella inziale
+    for (let i = parolaInputMinuscolizzata.length - 1; i >= 0; i--) {
+        parolaTrasformataInvertita += parolaInputMinuscolizzata[i];
+    }
+    //console.log(parolaTrasformataInvertita); // oiac
+
+    if (parolaInputMinuscolizzata === parolaTrasformataInvertita){
+        return true;
+    } else {
+    return false;
+    }
+}
 /*
 OPERATIONS
 */
-// 1 Prompt a utente inserisci una parola;
-const inpuUtente = prompt('Inserisci una parola');
+// input prompt per utente;
+const inputUtente = prompt('Inserisci una parola');
 
-// 3 - Condizione: la parola è palindroma? SE palindroma true ALTRIMENTI false
-if (palindrogram(inpuUtente) === true) {
-    alert(`La parola ${inpuUtente} è palindroma.`)
+// output
+if(checkPalindromaFnz(inputUtente)) {
+    alert(`la parola ${inputUtente} è palindroma`);
 } else {
-    alert(`La parola ${inpuUtente} non è palindroma.`)
+    alert(`la parola ${inputUtente} non è palindroma`);
 }
